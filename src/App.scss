@@ -30,6 +30,7 @@ main {
         margin: 1rem;
         border-radius: .3rem;
         h3 {
+            color: rgba(255, 0, 255, .7);
             span {
                 color: lightgray;
                 font-weight: 300;
@@ -48,9 +49,9 @@ main {
             list-style: none;
             li {
                 padding: .3rem;
-            }
-            .rating {
-
+                span {
+                    color: rgba(255, 0, 255, .7);
+                }
             }
             .desc {
                 text-align: justify;
@@ -61,9 +62,11 @@ main {
 
     .personCard {
         .personMovies {
+            color: rgba(255, 0, 255, .7);
             display:flex;
             gap: 2rem;
             padding: 1rem;
+            
             .miniMovie {
                 text-align: center;
                 display: grid;
@@ -73,8 +76,13 @@ main {
                 }
             }
         }
+        p {
+            span {
+                color: rgba(255, 0, 255, .7);
+            }
+        }
     }
-
+    
     .error {
         text-align: center;
         font-size: 1.5rem;

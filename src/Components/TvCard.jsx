@@ -18,9 +18,9 @@ export default function
                 <img src={poster_path ? `https://image.tmdb.org/t/p/w500/${poster_path}` : 'https://templatelab.com/wp-content/uploads/2019/06/movie-poster-template-03.jpg?w=395'}/>
             </figure>
             <ul>
-                <li className="rating">Rating: {vote_average === 0 ? 'none' : vote_average}</li>
-                <li className="country">Country: {origin_country}</li>
-                <li className="desc">Overview: {overview}</li>
+                <li className="rating"><span>Rating: </span>{vote_average === 0 ? 'none' : vote_average}</li>
+                <li className="country"><span>Country: </span>{origin_country}</li>
+                <li className="desc">{overview}</li>
             </ul>
         </div>
     )
