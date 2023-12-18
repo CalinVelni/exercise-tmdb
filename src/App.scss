@@ -1,7 +1,12 @@
+:root {
+    --customColor: rgba(255, 0, 255, .6);
+}
+
 main {
     h1 {
         text-align: center;
         padding-top: 1rem;
+        color: var(--customColor);
     }
 
     .searchBar {
@@ -30,7 +35,7 @@ main {
         margin: 1rem;
         border-radius: .3rem;
         h3 {
-            color: rgba(255, 0, 255, .7);
+            color: var(--customColor);
             span {
                 color: lightgray;
                 font-weight: 300;
@@ -50,7 +55,7 @@ main {
             li {
                 padding: .3rem;
                 span {
-                    color: rgba(255, 0, 255, .7);
+                    color: var(--customColor);
                 }
             }
             .desc {
@@ -62,7 +67,7 @@ main {
 
     .personCard {
         .personMovies {
-            color: rgba(255, 0, 255, .7);
+            color: var(--customColor);
             display:flex;
             gap: 2rem;
             padding: 1rem;
@@ -78,7 +83,7 @@ main {
         }
         p {
             span {
-                color: rgba(255, 0, 255, .7);
+                color: var(--customColor);
             }
         }
     }
@@ -87,5 +92,6 @@ main {
         text-align: center;
         font-size: 1.5rem;
         padding: 2rem;
+        color: var(--customColor);
     }
 }
