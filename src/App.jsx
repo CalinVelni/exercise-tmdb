@@ -1,68 +1,54 @@
-import './App.scss'
-import { useEffect, useState } from 'react'
-import SearchBar from './Components/SearchBar'
-import MovieCard from './Components/MovieCard'
-import TvCard from './Components/TvCard'
-import PersonCard from './Components/PersonCard'
-import Footer from './Components/Footer'
-const apiKey = import.meta.env.VITE_API_KEY;
+/* L'idea è di creare una react app per vedere le caratteristiche dei paesi.
+
+Usate il componente App per gestire la NAV e le rotte della React App.
+Le rotte sono:
+- "/": una home con logo del sito.
+- "about": una pagina che spiega chi siete e perché fate questo sito.
+- "countries": la pagina con la lista di tutti i paesi. (consiglio: 
+  fare componente per la pagina Countries e il componente per il singolo country CountryCard). 
+  Quando clicco su una CountryCard, vengo reindirizzato a country/:code, dove :code è il codice del paese.
+- "country/:code", vi mostra la card singola del country con uno stile differente.
+
+BONUS:
+Aggiungete il selettore per la lingua, e in base alla lingua selezionata, scrivete i nomi delle proprietà che mostrate 
+e il contenuto del sito, nella lingua selezionata. */
+
+import { useState } from "react";
+
+import "./App.css";
+import { NavLink, Route, Routes } from "react-router-dom";
+import About from "./components/About";
+import Countries from "./components/Countries";
+import Country from "./components/Country";
+import NotFound from "./components/NotFound";
+import Home from "./components/Home";
 
 function App() {
-
-  const [list, setlist] = useState([]);
-  const [srcValue, setSrcValue] = useState('');
-  const [selValue, setSelValue] = useState('movie');
-  const [error, setError] = useState(false);
-
-  const handleSearch = (newValue) => setSrcValue(newValue); 
-
-  useEffect(() => {
-    const query = new URLSearchParams({
-      api_key: apiKey,
-      query: srcValue,
-      language: 'en-EN',
-    });
-    fetch(`https://api.themoviedb.org/3/search/${selValue}?${query.toString()}`)
-    .then(response => response.json())
-    .then(obj => {setlist(obj.results)})
-    .catch(err => {
-      console.warn(err);
-      setError(true);
-    });
-  }, [srcValue, selValue]);
-  
   return (
-    <main>
-      <h1>The Calin Database</h1>
-      <SearchBar
-        handleSearch={handleSearch}
-        setSelValue={setSelValue}
-      />
-      {error ? 
-      <div className='error'>Error detected, please reload the page</div> 
-      : 
-      <section className='cardsContainer'>
-        {list.map(data => {
-          switch(selValue){
-            case 'movie':
-              return <MovieCard key={data.id} {...data}/>
+    <div>
+      <nav>
+        <ul>
+          <li>
+            <NavLink to="/">Home</NavLink>
+          </li>
+          <li>
+            <NavLink to="about">About</NavLink>
+          </li>
+          <li>
+            <NavLink to="countries">Countries</NavLink>
+          </li>
+        </ul>
+      </nav>
 
-            case 'tv':
-              return <TvCard key={data.id} {...data}/>
-            
-            case 'person':
-              return <PersonCard key={data.id} {...data}/>
-
-            default:
-              setError(true);
-        }})}
-      </section>}
-      <Footer
-        author='Calin'
-        year='2023'
-      />
-    </main>
-  )
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/countries" element={<Countries />} />
+        <Route path="/countries/:code" element={<Country />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </div>
+  );
 }
 
-export default App
+export default App;
